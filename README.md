@@ -10,3 +10,8 @@ Replica antes: 10
 Replica depois: 7
 Consulta após falha: REPLICA 7
 PS C:\Users\aluno\AppData\Local\Programs\Microsoft VS Code> 
+
+EVIDENCIA 2
+
+MAXIMO_SIMULTANEO = 3 FOI ALTERADO PARA 2 = MAXIMO_SIMULTANEO = 3
+
