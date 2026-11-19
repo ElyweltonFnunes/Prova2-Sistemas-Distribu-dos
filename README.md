@@ -10,9 +10,12 @@ Replica antes: 10
 Replica depois: 7
 Consulta após falha: REPLICA 7
 PS C:\Users\aluno\AppData\Local\Programs\Microsoft VS Code> 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 EVIDENCIA 2
+
+No terminal resultado Estoque principal: 10 apos a correção Estoque principal: 7
 
 FOI ALTERADO DE 3 PARA 2 A MAXIMO_SIMULTANEO 
 <img width="228" height="70" alt="image" src="https://github.com/user-attachments/assets/a56950d0-8739-4660-8c11-e90ec24eb064" />
