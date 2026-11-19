@@ -35,9 +35,6 @@ para def sincronizar():
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-EVIDENCIA 5 
-
-
 
 
 
@@ -45,15 +42,15 @@ EVIDENCIA 5
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ETAPA 5 ANALISE TÉCNICA 
 
-QUESTÃO 1 - O SEMAFARO TEM A FUNÇÃO DE DE DAR A SEQUENCIA NA ORDEM DE PROCESSAMENTO DOS PEDIDOS 
+QUESTÃO 1 - Qual é a função do semáforo no processamento dos pedidos?O semáforo controla a quantidade de pedidos processados ao mesmo tempo,evitando sobrecarga no sistema
 
-QUESTÃO 2 - 
+QUESTÃO 2 -  Por que é necessário sincronizar os dados entre o servidor principal e a réplica?Para garantir que o servidor principal e a réplica tenham as mesmas informações de estoque, evitando dados desactualizados
 
-QUESTÃO 3 -
+QUESTÃO 3 - O que significa tolerância a falhas e como ela aparece neste programa?É a capacidade do sistema de continuar funcionando mesmo quando ocorre uma falha. No programa, aparece quando o servidor principal falha e a réplica assume processamento.
 
-QUESTÃO 4 -
+QUESTÃO 4 -  Para que serve o "Lock" no programa e como o controle de acessoaos recursos ajuda a prevenir problemas de concorrência?O Lock controla o acesso aos recursos compartilhados, evitando que duas tarefasalterem os mesmos dados ao mesmo tempo e causem erros
 
-QUESTÃO 5 -
+QUESTÃO 5 -Considerando a sequência de eventos, a sincronização do estoquedeve acontecer antes ou depois do processamento dos pedidos? Explique arelação de causalidade.A sincronização deve acontecer depois do processamento dos pedidos, poisprimeiro o estoque é atualizado no servidor principal e depois a réplica recebe osnovos valores. Assim, os dois servidores permanecem sincronizados
 
 
 
