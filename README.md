@@ -37,6 +37,29 @@ para def sincronizar():
     replica["estoque"] = estoque["estoque"]
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+EVIDENCIA 4 
+
+FOI IDENTIFICADO FUNÇÃO ESTOQUE ESTAVA return "PRINCIPAL", replica["estoque"] ALTERADO PRA   return "PRINCIPAL", ESTOQUE["estoque"]
+
+ERRADO 
+def consultar_estoque():
+    if principal["online"]:
+        return "PRINCIPAL", replica["estoque"]
+
+    if replica["online"]:
+        return "REPLICA", replica["estoque"]
+
+    return "INDISPONIVEL", None
+CERTO
+def consultar_estoque():
+    if principal["online"]:
+        return "PRINCIPAL", principal["estoque"]
+
+    if replica["online"]:
+        return "REPLICA", replica["estoque"]
+
+    return "INDISPONIVEL", None
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 EVIDENCIA 5
 
