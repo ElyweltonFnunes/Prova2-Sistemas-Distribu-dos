@@ -36,13 +36,85 @@ def sincronizar():
 para def sincronizar():
     replica["estoque"] = estoque["estoque"]
     
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+EVIDENCIA 5
+
+=== CENTRAL DE PEDIDOS ===
+Pedidos confirmados: [101, 102, 103]
+Estoque principal: 7
+Replica antes: 10
+Replica depois: 7
+Consulta após falha: REPLICA 7
+
+import threading
+import time
+
+principal = {"online": True, "estoque": 10}
+replica = {"online": True, "estoque": 10}
+
+pedidos_confirmados = []
+
+MAXIMO_SIMULTANEO = 2
+
+semafaro = threading.Semaphore(MAXIMO_SIMULTANEO)
+TRAVA = threading.Lock()
+
+def processar_pedido(numero):
+    with semafaro:
+        time.sleep(0.1)
+
+        with TRAVA:
+            if principal["estoque"] > 0:
+                principal["estoque"] -= 1
+                pedidos_confirmados.append(numero)
+
+def sincronizar():
+    replica["estoque"] = principal["estoque"]
+
+def consultar_estoque():
+    if principal["online"]:
+        return "PRINCIPAL", principal["estoque"]
+
+    if replica["online"]:
+        return "REPLICA", replica["estoque"]
+
+    return "INDISPONIVEL", None
+
+print("=== CENTRAL DE PEDIDOS ===")
+
+trabalhadores = [
+    threading.Thread(
+        target=processar_pedido,
+        args=(numero,)
+    )
+    for numero in [101, 102, 103]
+]
+
+for trabalhador in trabalhadores:
+    trabalhador.start()
+
+for trabalhador in trabalhadores:
+    trabalhador.join()
+
+print("Pedidos confirmados:", sorted(pedidos_confirmados))
+print("Estoque principal:", principal["estoque"])
+
+print("Replica antes:", replica["estoque"])
+
+sincronizar()
+
+print("Replica depois:", replica["estoque"])
+
+principal["online"] = False
+
+nome, estoque = consultar_estoque()
+
+print("Consulta após falha:", nome, estoque)
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ETAPA 5 ANALISE TÉCNICA 
 
 QUESTÃO 1 - Qual é a função do semáforo no processamento dos pedidos?O semáforo controla a quantidade de pedidos processados ao mesmo tempo,evitando sobrecarga no sistema
