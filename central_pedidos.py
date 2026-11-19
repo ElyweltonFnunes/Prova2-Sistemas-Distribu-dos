@@ -7,7 +7,7 @@ replica = {"online": True, "estoque": 10}
 
 pedidos_confirmados = []
 
-MAXIMO_SIMULTANEO = 3
+MAXIMO_SIMULTANEO = 2
 
 semafaro = threading.Semaphore(MAXIMO_SIMULTANEO)
 TRAVA = threading.Lock()
